@@ -8,6 +8,7 @@ import { loggingHandler } from './middleware/loggingHandler.js';
 import { routeNotFound } from './middleware/routeNotFound.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
+import subjectRoutes from './modules/subject/subject_routes.js'; // Asegúrate de que la ruta sea correcta
 
 dotenv.config(); // Cargamos las variables de entorno desde el archivo .env
 
@@ -34,6 +35,10 @@ const swaggerOptions = {
               description: 'Rutas relacionadas con el forum',
             },
             {
+              name: 'Subjects',
+              description: 'Rutas relacionadas con subject',
+            },
+            {
               name: 'Main',
               description: 'Rutas principales de la API',
             }
@@ -44,7 +49,7 @@ const swaggerOptions = {
             }
         ]
     },
-    apis: ['./modules/users/*.js', './modules/forum/*.js'] // Asegúrate de que esta ruta apunta a tus rutas
+    apis: ['./modules/users/*.js', './modules/forum/*.js', './modules/subject/*.js'] // Asegúrate de que esta ruta apunta a tus rutas
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
@@ -58,6 +63,7 @@ app.use(corsHandler);
 //rutas
 app.use('/api', userRoutes);
 app.use('/api', forumRoutes);
+app.use('/api', subjectRoutes);
 // Rutes de prova
 app.get('/', (req, res) => {
     res.send('Welcome to my API');
@@ -66,7 +72,7 @@ app.get('/', (req, res) => {
 // Conexión a MongoDB
 //mongoose;
 mongoose
-    .connect(process.env.MONGODB_URI || 'mongodb+srv://joan:1234@cluster0.3owhs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/miBaseDeDatos')
     .then(() => console.log('Connected to DB'))
     .catch((error) => console.error('DB Connection Error:', error));
 
