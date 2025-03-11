@@ -1,5 +1,5 @@
 # Prova API
-
+Ejercicio Hecho por DavidLM donde se añade el modelo subject y sus correspondientes acciones para realizar peticiones a través de una API. Hecho a partir del repositorio del seminario y con ayuda de ChatGPT.
 ## Descripció
 Una API bàsica desenvolupada en Node.js amb TypeScript, utilitzant Express i Mongoose per a la gestió de dades en MongoDB. A més, s'inclou documentació amb Swagger.
 
